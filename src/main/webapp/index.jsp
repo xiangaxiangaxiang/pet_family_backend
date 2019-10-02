@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java"  contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
@@ -17,5 +18,10 @@ springmvc上传文件
     <input type="file" name="upload_file" />
     <input type="submit" value="富文本图片上传文件" />
 </form>
+=======
+<html>
+<body>
+<h2>Hello World!</h2>
+>>>>>>> bdb070070b0a005ec24a64eecbdbf443f2ce84c6
 </body>
 </html>
