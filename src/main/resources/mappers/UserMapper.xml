@@ -29,14 +29,14 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.petfamily.pojo.User">
-    insert into pf_user (id, username, password, 
-      email, phone, question, 
-      answer, role, create_time, 
+    insert into pf_user (id, username, password,
+      email, phone, question,
+      answer, role, create_time,
       update_time)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
       #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
-      now()
+      now())
   </insert>
   <insert id="insertSelective" parameterType="com.petfamily.pojo.User">
     insert into pf_user
@@ -151,4 +151,50 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="checkUsername" resultType="int" parameterType="string">
+    select count(1) from pf_user
+    where username = #{username}
+  </select>
+  <select id="checkEmail" resultType="int" parameterType="string">
+    select count(1) from pf_user
+    where email = #{email}
+  </select>
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT 
+    <include refid="Base_Column_List" />
+    from pf_user
+    where username = #{username}
+    and password = #{password}
+  </select>
+  <select id="selectQuestionByUsername" resultType="string" parameterType="string">
+    SELECT
+    question
+    FROM pf_user
+    WHERE username = #{username}
+  </select>
+  <select id="checkAnswer" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    FROM pf_user
+    WHERE username = #{username}
+    and question = #{question}
+    and answer = #{answer}
+  </select>
+  <update id="updatePasswordByUsername" parameterType="map">
+    UPDATE pf_user
+    SET password = #{passwordNew},update_time = now()
+    where username = #{username}
+  </update>
+  <select id="checkPassword" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    from pf_user
+    where password = #{password}
+    and id = #{userId}
+  </select>
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    select count(1) from pf_user
+    where email = #{email}
+    and id != #{userId}
+  </select>
 </mapper>
