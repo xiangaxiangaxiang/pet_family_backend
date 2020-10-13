@@ -143,7 +143,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13.1</version>
       <!--<scope>test</scope>-->
     </dependency>
 
@@ -258,7 +258,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.1</version>
       <scope>test</scope>
 >>>>>>> bdb070070b0a005ec24a64eecbdbf443f2ce84c6
     </dependency>
